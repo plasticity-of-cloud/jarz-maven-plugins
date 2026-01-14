@@ -37,7 +37,7 @@
         
         <!-- Test dependencies -->
         <junit.version>5.10.1</junit.version>
-        <maven-plugin-testing-harness.version>3.3.0</maven-plugin-testing-harness.version>
+        <maven-plugin-testing-harness.version>3.5.0</maven-plugin-testing-harness.version>
     </properties>
 
     <dependencyManagement>
