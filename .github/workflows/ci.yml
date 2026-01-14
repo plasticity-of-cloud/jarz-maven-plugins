@@ -68,7 +68,7 @@ jobs:
         java -jar target/hello-jarz-1.0.0.jar
       
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: jarz-maven-plugins
         path: |
