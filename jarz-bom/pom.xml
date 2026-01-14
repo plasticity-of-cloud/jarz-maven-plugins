@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.jarz.streaming</groupId>
+    <artifactId>jarz-bom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>JARZ Bill of Materials</name>
+    <description>Bill of Materials for JARZ Maven plugins ecosystem</description>
+
+    <properties>
+        <jarz.version>1.0.0-SNAPSHOT</jarz.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- JARZ Maven Plugins -->
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-package-plugin</artifactId>
+                <version>${jarz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-dependency-plugin</artifactId>
+                <version>${jarz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-repository-plugin</artifactId>
+                <version>${jarz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-shared</artifactId>
+                <version>${jarz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-archetype</artifactId>
+                <version>${jarz.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

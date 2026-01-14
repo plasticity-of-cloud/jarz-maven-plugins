@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>hello-jarz</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Hello JARZ Example</name>
+    <description>Example project demonstrating JARZ Maven plugins usage</description>
+
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jarz.version>1.0.0-SNAPSHOT</jarz.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-bom</artifactId>
+                <version>${jarz.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Example dependencies that will be packaged into JARZ -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 1. JARZ Repository Plugin - Configure JARZ CDN repositories -->
+            <plugin>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-repository-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jarzRepository>https://cdn.jarz-streaming.net/maven2</jarzRepository>
+                    <fallbackToJar>true</fallbackToJar>
+                </configuration>
+            </plugin>
+
+            <!-- 2. JARZ Dependency Plugin - Resolve JARZ dependencies -->
+            <plugin>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <strictMode>false</strictMode>
+                    <fallbackToJar>true</fallbackToJar>
+                </configuration>
+            </plugin>
+
+            <!-- 3. Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+
+            <!-- Disable default JAR plugin since we're creating JARZ instead -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 4. JARZ Package Plugin - Create JARZ archive as primary artifact -->
+            <plugin>
+                <groupId>net.jarz.streaming</groupId>
+                <artifactId>jarz-package-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jarz</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <compressionLevel>3</compressionLevel>
+                    <blockSize>65536</blockSize>
+                    <enableDictionary>true</enableDictionary>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
