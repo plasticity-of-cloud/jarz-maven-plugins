@@ -28,7 +28,7 @@
         
         <!-- Plugin API versions -->
         <maven.version>3.8.1</maven.version>
-        <maven-plugin-api.version>3.8.1</maven-plugin-api.version>
+        <maven-plugin-api.version>3.9.12</maven-plugin-api.version>
         <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
         <maven-project.version>2.2.1</maven-project.version>
         
