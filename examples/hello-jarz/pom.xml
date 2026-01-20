@@ -21,7 +21,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-bom</artifactId>
                 <version>${jarz.version}</version>
                 <type>pom</type>
@@ -48,7 +48,7 @@
         <plugins>
             <!-- 1. JARZ Repository Plugin - Configure JARZ CDN repositories -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-repository-plugin</artifactId>
                 <executions>
                     <execution>
@@ -66,7 +66,7 @@
 
             <!-- 2. JARZ Dependency Plugin - Resolve JARZ dependencies -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-dependency-plugin</artifactId>
                 <executions>
                     <execution>
@@ -107,7 +107,7 @@
 
             <!-- 4. JARZ Package Plugin - Create JARZ archive as primary artifact -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-package-plugin</artifactId>
                 <executions>
                     <execution>

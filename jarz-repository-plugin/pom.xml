@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>net.jarz.streaming</groupId>
+        <groupId>net.jarz-streaming</groupId>
         <artifactId>jarz-maven-plugins-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -18,7 +18,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.jarz.streaming</groupId>
+            <groupId>net.jarz-streaming</groupId>
             <artifactId>jarz-shared</artifactId>
         </dependency>
         <dependency>

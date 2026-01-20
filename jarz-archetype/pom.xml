@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>net.jarz.streaming</groupId>
+        <groupId>net.jarz-streaming</groupId>
         <artifactId>jarz-maven-plugins-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -21,7 +21,7 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>3.2.1</version>
+                <version>${archetype-packaging.version}</version>
             </extension>
         </extensions>
         <pluginManagement>
@@ -29,7 +29,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>${maven-archetype-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

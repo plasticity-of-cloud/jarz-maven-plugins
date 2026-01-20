@@ -91,15 +91,15 @@ public class JarzPackageMojo extends AbstractMojo {
         // Use JARZ v2 API to create JARZ archive
         int targetBlockSize = 64 * 1024;
         int maxBlockSize = 128 * 1024;
-        jdk.incubator.jarz.v2.BlockAssigner assigner = new jdk.incubator.jarz.v2.BlockAssigner(targetBlockSize, maxBlockSize);
+        net.jarz.streaming.v2.BlockAssigner assigner = new net.jarz.streaming.v2.BlockAssigner(targetBlockSize, maxBlockSize);
         
         // Create empty dependency graph since we don't have dependency analysis
-        jdk.incubator.jarz.v2.DependencyGraph graph = new jdk.incubator.jarz.v2.DependencyGraph();
-        List<jdk.incubator.jarz.v2.Block> blocks = assigner.assignBlocks(entries, graph);
+        net.jarz.streaming.v2.DependencyGraph graph = new net.jarz.streaming.v2.DependencyGraph();
+        List<net.jarz.streaming.v2.Block> blocks = assigner.assignBlocks(entries, graph);
         
         // Write JARZ v2 archive
-        try (jdk.incubator.jarz.v2.BlockWriter writer = new jdk.incubator.jarz.v2.BlockWriter(jarzFile.toPath())) {
-            for (jdk.incubator.jarz.v2.Block block : blocks) {
+        try (net.jarz.streaming.v2.BlockWriter writer = new net.jarz.streaming.v2.BlockWriter(jarzFile.toPath())) {
+            for (net.jarz.streaming.v2.Block block : blocks) {
                 writer.writeBlock(block);
             }
         }

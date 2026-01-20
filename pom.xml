@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.jarz.streaming</groupId>
+    <groupId>net.jarz-streaming</groupId>
     <artifactId>jarz-maven-plugins-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -12,6 +12,36 @@
     <name>JARZ Maven Plugins</name>
     <description>Maven plugins ecosystem for JARZ compressed archive format</description>
     <url>https://github.com/plasticity-cloud/jarz-maven-plugins</url>
+
+    <licenses>
+        <license>
+            <name>GNU Affero General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/agpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Plasticity.Cloud</name>
+            <email>ecosystem@plasticity.cloud</email>
+            <organization>Plasticity.Cloud</organization>
+            <organizationUrl>https://plasticity.cloud</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/plasticity-cloud/jarz-maven-plugins-private.git</connection>
+        <developerConnection>scm:git:ssh://github.com:plasticity-cloud/jarz-maven-plugins-private.git</developerConnection>
+        <url>https://github.com/plasticity-cloud/jarz-maven-plugins-private/tree/main</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <url>https://central.sonatype.com/api/v1/publisher/deployments/upload/</url>
+        </repository>
+    </distributionManagement>
 
     <modules>
         <module>jarz-package-plugin</module>
@@ -27,17 +57,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Plugin API versions -->
-        <maven.version>3.8.1</maven.version>
-        <maven-plugin-api.version>3.8.1</maven-plugin-api.version>
-        <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
+        <maven.version>3.9.12</maven.version>
+        <maven-plugin-api.version>3.9.12</maven-plugin-api.version>
+        <maven-plugin-annotations.version>3.15.2</maven-plugin-annotations.version>
         <maven-project.version>2.2.1</maven-project.version>
         
         <!-- JARZ dependencies -->
-        <jarz-core.version>1.0.0-SNAPSHOT</jarz-core.version>
+        <jarz-core.version>1.0.0</jarz-core.version>
         
         <!-- Test dependencies -->
-        <junit.version>5.10.1</junit.version>
-        <maven-plugin-testing-harness.version>3.3.0</maven-plugin-testing-harness.version>
+        <junit.version>6.0.2</junit.version>
+        <maven-plugin-testing-harness.version>3.5.0</maven-plugin-testing-harness.version>
+        
+        <!-- Archetype versions -->
+        <archetype-packaging.version>3.4.1</archetype-packaging.version>
+        <maven-archetype-plugin.version>3.4.1</maven-archetype-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -67,14 +101,14 @@
 
             <!-- JARZ Core -->
             <dependency>
-                <groupId>jdk.incubator</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-core</artifactId>
                 <version>${jarz-core.version}</version>
             </dependency>
 
             <!-- Internal modules -->
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-shared</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -95,16 +129,35 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.1</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.15.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>${maven-archetype-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <profiles>
         <profile>
@@ -122,30 +175,82 @@
                 </snapshotRepository>
             </distributionManagement>
         </profile>
+        <!-- Release profile for Maven Central -->
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Source plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+                    <!-- Javadoc plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.10.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <source>11</source>
+                            <doclint>none</doclint>
+                        </configuration>
+                    </plugin>
+                    
+                    <!-- GPG plugin for signing -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--batch</arg>
+                                <arg>--no-tty</arg>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </plugin>
+                    
+                    <!-- Central Publishing plugin -->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.9.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.11.0</version>
-                    <configuration>
-                        <release>${maven.compiler.release}</release>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.10.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.2.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>

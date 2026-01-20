@@ -21,7 +21,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-bom</artifactId>
                 <version>${jarz.version}</version>
                 <type>pom</type>
@@ -42,7 +42,7 @@
         <plugins>
             <!-- JARZ Repository Plugin -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-repository-plugin</artifactId>
                 <executions>
                     <execution>
@@ -56,7 +56,7 @@
 
             <!-- JARZ Dependency Plugin -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-dependency-plugin</artifactId>
                 <executions>
                     <execution>
@@ -80,7 +80,7 @@
 
             <!-- JARZ Package Plugin -->
             <plugin>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-package-plugin</artifactId>
                 <executions>
                     <execution>

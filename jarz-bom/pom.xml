@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.jarz.streaming</groupId>
+    <groupId>net.jarz-streaming</groupId>
     <artifactId>jarz-bom</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -20,27 +20,27 @@
         <dependencies>
             <!-- JARZ Maven Plugins -->
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-package-plugin</artifactId>
                 <version>${jarz.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-dependency-plugin</artifactId>
                 <version>${jarz.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-repository-plugin</artifactId>
                 <version>${jarz.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-shared</artifactId>
                 <version>${jarz.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.jarz.streaming</groupId>
+                <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-archetype</artifactId>
                 <version>${jarz.version}</version>
             </dependency>
