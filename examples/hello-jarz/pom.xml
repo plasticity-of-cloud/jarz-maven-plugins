@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>net.jarz-streaming</groupId>
+        <artifactId>jarz-maven-plugins-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
     <groupId>com.example</groupId>
     <artifactId>hello-jarz</artifactId>
     <version>1.0.0</version>
@@ -13,9 +20,7 @@
     <description>Example project demonstrating JARZ Maven plugins usage</description>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jarz.version>1.0.0-SNAPSHOT</jarz.version>
+        <jarz.version>${revision}</jarz.version>
     </properties>
 
     <dependencyManagement>
@@ -50,6 +55,7 @@
             <plugin>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-repository-plugin</artifactId>
+                <version>${jarz.version}</version>
                 <executions>
                     <execution>
                         <phase>initialize</phase>
@@ -68,6 +74,7 @@
             <plugin>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-dependency-plugin</artifactId>
+                <version>${jarz.version}</version>
                 <executions>
                     <execution>
                         <phase>process-resources</phase>
@@ -109,6 +116,7 @@
             <plugin>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-package-plugin</artifactId>
+                <version>${jarz.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

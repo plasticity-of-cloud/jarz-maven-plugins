@@ -59,7 +59,7 @@ jobs:
     - name: Set version
       if: github.event.inputs.version
       run: |
-        mvn versions:set -DnewVersion=${{ github.event.inputs.version }}
+        mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DprocessAllModules
         mvn versions:commit
         
     - name: Build and test

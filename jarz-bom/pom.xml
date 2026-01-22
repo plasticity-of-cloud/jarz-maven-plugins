@@ -6,14 +6,15 @@
 
     <groupId>net.jarz-streaming</groupId>
     <artifactId>jarz-bom</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <name>JARZ Bill of Materials</name>
     <description>Bill of Materials for JARZ Maven plugins ecosystem</description>
 
     <properties>
-        <jarz.version>1.0.0-SNAPSHOT</jarz.version>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <jarz.version>${revision}</jarz.version>
     </properties>
 
     <dependencyManagement>
