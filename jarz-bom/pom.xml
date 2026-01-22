@@ -17,7 +17,7 @@
     <description>Bill of Materials for JARZ Maven plugins ecosystem</description>
 
     <properties>
-        <jarz.version>${revision}</jarz.version>
+        <!-- No additional properties needed - use project.version directly -->
     </properties>
 
     <dependencyManagement>
@@ -26,27 +26,27 @@
             <dependency>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-package-plugin</artifactId>
-                <version>${jarz.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-dependency-plugin</artifactId>
-                <version>${jarz.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-repository-plugin</artifactId>
-                <version>${jarz.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-shared</artifactId>
-                <version>${jarz.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>net.jarz-streaming</groupId>
                 <artifactId>jarz-archetype</artifactId>
-                <version>${jarz.version}</version>
+                <version>${revision}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

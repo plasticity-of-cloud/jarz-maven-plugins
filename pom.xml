@@ -146,6 +146,9 @@
                 <configuration>
                     <flattenMode>resolveCiFriendliesOnly</flattenMode>
                     <updatePomFile>true</updatePomFile>
+                    <pomElements>
+                        <dependencyManagement>resolve</dependencyManagement>
+                    </pomElements>
                 </configuration>
                 <executions>
                     <execution>
