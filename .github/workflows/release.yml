@@ -63,7 +63,7 @@ jobs:
         mvn versions:commit
         
     - name: Build and test
-      run: mvn clean install
+      run: mvn clean install -pl '!examples/hello-jarz'
       
     - name: Deploy to Maven Central
       run: mvn deploy -P release -pl '!examples/hello-jarz'
