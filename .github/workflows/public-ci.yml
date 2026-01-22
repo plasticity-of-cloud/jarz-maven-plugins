@@ -32,11 +32,10 @@ jobs:
     - name: Build and test
       run: mvn clean install
       
-    - name: Test Hello JARZ example
-      working-directory: examples/hello-jarz
+    - name: Verify JARZ example
       run: |
-        mvn clean package
-        if [ -f "target/hello-jarz-1.0.0.jarz" ]; then
+        # Verify JARZ file was created
+        if [ -f "examples/hello-jarz/target/hello-jarz-1.0.0.jarz" ]; then
           echo "✅ JARZ file created successfully"
         else
           echo "❌ JARZ file not created"
