@@ -62,6 +62,9 @@ jobs:
         mvn versions:set -DnewVersion=${{ github.event.inputs.version }} -DprocessAllModules
         mvn versions:commit
         
+    - name: Process flattened POMs
+      run: mvn flatten:flatten -pl '!examples/hello-jarz'
+        
     - name: Build and test
       run: mvn clean install -pl '!examples/hello-jarz'
       
