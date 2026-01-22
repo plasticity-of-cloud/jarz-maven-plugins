@@ -63,10 +63,10 @@ jobs:
         mvn versions:commit
         
     - name: Build and test
-      run: mvn clean verify
+      run: mvn clean install
       
     - name: Deploy to Maven Central
-      run: mvn deploy -P release
+      run: mvn deploy -P release -pl '!examples/hello-jarz'
       env:
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
