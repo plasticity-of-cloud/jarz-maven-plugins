@@ -20,7 +20,9 @@
     <description>Example project demonstrating JARZ Maven plugins usage</description>
 
     <properties>
-        <jarz.version>${revision}</jarz.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jarz.version>1.0.1</jarz.version>
     </properties>
 
     <dependencyManagement>
